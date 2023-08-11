@@ -7,3 +7,8 @@ First Section We Learn about
  ```3. Type & Struct```
  ```4. Structs is used with Function using Reciever```
  ```5. Structs is used for Maps and Slice```
+
+ Second Section We Learn about
+ ```1. Looping For Loop and Range```
+ ```2. Conditional, If & Switch statement```
+ ```3. Using Interface```
