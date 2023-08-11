@@ -20,11 +20,11 @@ func main() {
 
 func divider(x, y float32) (float32, error) {
 	var result float32
-	result = x / y
-
+	
 	if y == 0 {
 		return result, errors.New("Cannot divide by zero")
 	}
+	result = x / y
 	// return result, error // should define the error
 	return result, nil
 }

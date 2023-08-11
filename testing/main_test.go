@@ -27,12 +27,12 @@ func TestBadDivide(t *testing.T) {
 }
 
 // 2) with a function and struct
-var divideTest []struct {
+var tests = []struct {
 	name     string
 	dividend float32
 	divisor  float32
 	expected float32
-	isError  bool
+	isErr  bool
 }{
 	{"valid-data", 100.0, 10.0, 10.0, false},
 	{"invalid-data", 100.0, 0.0, 0.0, true},
@@ -41,19 +41,20 @@ var divideTest []struct {
 }
 
 func TestDivision(t *testing.T) {
-	for _, tt := range tests {
-		got, err := divider(t.divident, t.divisor)
-		if tt.isErr{
-
+	for _, tt := range tests { // tt is represent of test
+		got, err := divider(tt.dividend, tt.divisor)
+		if tt.isErr {
 			if err == nil {
-				t.Error("Expected an error but not have one")
+				t.Error("Expected an error but did not get one")
 			}
 		} else {
 			if err != nil {
-				t.Error("Did not expect and error but got one")
+				t.Error("Did not expect an error, but got one", err.Error())
 			}
-		} else {
-			t.Error("Expected %f but got %f", tt.expected, got)
+		}
+
+		if got != tt.expected {
+			t.Errorf("Expected %f but got %f", tt.expected, got)
 		}
 	}
 }
