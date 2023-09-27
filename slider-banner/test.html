@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <div class="swiper banner_slider-top">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide container_slider-top">
+                <img class="img-banner_top"
+                    src="https://millionbloom.com/cdn/shop/files/Million_Bloom_-_July_Home_Banner_Desktop_757668ef-5787-466e-b84b-00e8de130ce4_2800x.jpg?v=1688439252"
+                    alt="Banner Desktop 1">
+                <img class="img-banner_bottom"
+                    src="https://cdn.shopify.com/s/files/1/0724/4637/8302/files/Million_Bloom_-_July_Home_Banner_Mobile.jpg?v=1687920879"
+                    alt="Banner Mobile 1">
+                <div class="slider-detail_banner">
+                    <div class="custom-badge">
+                        <img width="250" height="auto"
+                            src="https://cdn.shopify.com/s/files/1/0724/4637/8302/files/Million_Bloom_-_Cashback_10.svg?v=1680148953" />
+                    </div>
+                    <p>KOLEKSI BUNGA 2023</p>
+                    <h1><span id="randomText"></span> Seluruh Indonesia</h1>
+                </div>
+            </div>
+            <div class="swiper-slide container_slider-top">
+                <img class="img-banner_top"
+                    src="https://cdn.shopify.com/s/files/1/0724/4637/8302/files/Million_Bloom_-_Sept_Home_Banner_Desktop.jpg?v=1694510739"
+                    alt="Banner Desktop 2">
+                <img class="img-banner_bottom"
+                    src="https://cdn.shopify.com/s/files/1/0724/4637/8302/files/Million_Bloom_-_Sept_Home_Banner_Mobile.jpg?v=1694513614"
+                    alt="Banner Mobile 2">
+                <div class="slider-detail_banner">
+                    <div class="custom-badge">
+                        <img width="250" height="auto"
+                            src="https://cdn.shopify.com/s/files/1/0724/4637/8302/files/Million_Bloom_-_Cashback_10.svg?v=1680148953" />
+                    </div>
+                    <p>KOLEKSI BUNGA 2023</p>
+                    <h1><span id="randomText"></span> Seluruh Indonesia</h1>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <script type="text/javascript" src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".banner_slider-top", {
+            spaceBetween: 30,
+            centeredSlides: true,
+            loop: true,
+            // autoplay: {
+            //     delay: 2500,
+            //     disableOnInteraction: false,
+            // },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            speed: 1500,
+        });
+    </script>
+</body>
+
+</html>
