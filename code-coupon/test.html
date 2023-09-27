@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Coupon Section with Cropped Half Circle</title>
+    <style>
+        /* Container styles */
+        .container__coupon-product {
+            background-color: #DEF5FF;
+            padding: 40px;
+            text-align: start;
+            border-bottom: 2px solid #e0e0e0;
+            position: relative;
+            margin: 50px;
+        }
+
+        /* Cropped half circle styles left */
+        .cropped-half-circle-left {
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 40px;
+            left: -20px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        /* Cropped half circle styles right */
+        .cropped-half-circle-right {
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 40px;
+            right: -20px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        /* Coupon title styles */
+        .coupon-title {
+            font-size: 36px;
+            color: #333;
+            margin: 0;
+            /* margin-bottom: 20px; */
+        }
+
+        /* Coupon description styles */
+        .coupon-description {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .line-dot_coupon {
+             width: 100%;
+            border-top: 2px dotted #333;
+            line-height: 0;
+            padding: 10px 0; /* Increase the padding to increase space between dots */
+        
+        }
+
+        /* Coupon button styles */
+        .coupon-button {
+            background-color: #ff5722;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Hover effect for the coupon button */
+        .coupon-button:hover {
+            background-color: #e64a19;
+        }
+
+        .coupon_valid {
+            position: absolute;
+            bottom: 0;
+            right: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container__coupon-product">
+        <div class="cropped-half-circle-left"></div>
+        <div class="cropped-half-circle-right"></div>
+        <h2 class="coupon-sub-title">$35 Off</h2>
+        <h2 class="coupon-title">WELCOME35</h2>
+        <p class="coupon-description">Unlock special discounts with these exclusive coupons! Browse our selection of
+            deals and enjoy incredible savings on a wide range of products and services. Don't miss out on these
+            limited-time offers – grab your coupons now and start saving today!</p>
+        <!-- <button class="coupon-button">Get Coupons</button> -->        
+        <div class="line-dot_coupon"></div>
+        <p class="coupon_valid">Valid until Sep 31, 2023
+        </p>
+    </div>
+</body>
+
+</html>
