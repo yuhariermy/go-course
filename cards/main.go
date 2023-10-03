@@ -3,8 +3,7 @@ package main
 func main() {
 	cards := newDeck()
 
-	hand, remainingDeck := deal(cards, 5)
-
+	hand, remainingCards := slicingFunc(cards, 5)
 	hand.print()
-	remainingDeck.print()
+	remainingCards.print()
 }

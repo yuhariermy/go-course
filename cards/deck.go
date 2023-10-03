@@ -7,7 +7,7 @@ type deck []string
 func newDeck() deck {
 	cards := deck{}
 
-	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
+	cardSuits := []string{"Spades", "Hearts", "Diamonds", "Clubs"}
 	cardValues := []string{"Ace", "Two", "Three", "Four"}
 
 	for _, suit := range cardSuits {
@@ -25,6 +25,7 @@ func (d deck) print() {
 	}
 }
 
-func deal(d deck, handSize int) (deck, deck) {
+// For Slicing
+func slicingFunc(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
 }
