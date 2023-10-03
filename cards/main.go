@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	//cards := newDeck()
+	cards := newDeck()
 	/* =======IT USED FOR SLICING======= */
 	//
 	//hand, remainingCards := slicingFunc(cards, 5)
@@ -15,6 +15,10 @@ func main() {
 	//cards.saveToFile("saveToFile_cards")
 
 	/* =======IT USED FOR Read the from the File======= */
-	readCardsFromTheFile := newDeckFromFile("saveToFile_cards")
-	readCardsFromTheFile.print()
+	//readCardsFromTheFile := newDeckFromFile("saveToFile_cards")
+	//readCardsFromTheFile.print()
+
+	/* =======IT USED FOR Shuffle the Deck======= */
+	cards.shuffle()
+	cards.print()
 }
