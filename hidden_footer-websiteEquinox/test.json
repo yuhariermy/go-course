@@ -1,0 +1,39 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Crimson Rose Rhapsod",
+    "image": "https://millionbloom.com/cdn/shop/files/58NewProduct-3_450x450.png?v=1698123094",
+    "description": "Tak ada yang lebih indah dari ungkapan hati melalui bunga Crimson Rose Rhapsody. Hadirkan kejutan istimewa dengan 50 Mawar Merah yang mempesona, dikelilingi oleh kelembutan Baby's Breath Putih. Setiap detailnya disusun dengan penuh cinta dan perhatian.\n\nBuket bunga edisi premium dari Million Bloom\nRangkaian menawan bunga Red Rose, Baby's Breath\nUkuran: Grande, Terdiri dari 50 tangkai Mawar Merah, dan 5 Baby's Breath Putih\n\nDibalut Wrapping Paper Premium \u0026amp; Pita Satin\nTerangkai dalam satu kesatuan yang elegan\nKado terbaik untuk orang tersayang\nGratis custom kartu ucapan istimewa\nCocok sebagai ungkapan selamat atau hari bahagia\nMenyempurnakan perayaan berbagai momen spesial seperti hari Valentine, ulang tahun, anniversary, dan hari bahagia lainnya.\n\nMawar Merah simbolisasi cinta mendalam dan hasrat, sementara Baby's Breath melambangkan kesucian dan ketulusan. Kedua bunga ini menciptakan harmoni sempurna antara kekuatan dan kerentanan, mengajarkan kita bahwa dalam setiap cinta, ada kekuatan yang luar biasa pada momen berharga.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Million Bloom"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://millionbloom.com/products/crimson-rose-rhapsody",
+      "priceCurrency": "IDR",
+      "price": "1000000"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1",
+      "reviewCount": "1"
+    },
+    "review": {
+      "@type": "Review",
+      "name": "Alexander G",
+      "reviewBody": "Keren banget buket bunganya. Pengirimannya on time, pesan pagi untuk sore langsung diantar jam 4 sore. Packingnya aman banget dalam kotak kardus.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "datePublished": "2023-10-28",
+      "author": {"@type": "Person", "name": "Million Bloom"},
+      "publisher": {"@type": "Organization", "name": "Million Bloom"}
+    }
+  }
