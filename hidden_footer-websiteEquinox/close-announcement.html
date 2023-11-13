@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Include your CSS and JavaScript files -->
+    <style>
+        #announcement-bar {
+            position: block;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            display: none;
+            z-index: 1;
+            /* Ensure it appears above other content */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #content-below-bar {
+            margin-top: 0;
+            /* Normal margin, no gap when announcement bar is hidden */
+            padding: 20px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const announcementBar = document.getElementById("announcement-bar");
+            const closeButton = document.getElementById("close-announcement");
+
+            // Check if the user has visited before by checking a cookie
+            const hasVisitedBefore = document.cookie.includes("visitedBefore=true");
+
+            if (!hasVisitedBefore) {
+                // Show the announcement bar on the first visit
+                announcementBar.style.display = "block";
+            }
+
+            // Close the announcement bar when the close button is clicked
+            closeButton.addEventListener("click", function () {
+                announcementBar.style.display = "none";
+
+                // Set a cookie to remember that the user has closed the announcement
+                document.cookie = "visitedBefore=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="announcement-bar" class="hidden">
+        <p>This is your first visit to our website! We have a special announcement.</p>
+        <button id="close-announcement">Close</button>
+    </div>
+
+    <div id="content-below-bar">
+        <h2>Welcome to Our Website</h2>
+        <p>This is some content that appears below the announcement bar. You can add any content you like here.</p>
+    </div>
+</body>
+
+</html>
