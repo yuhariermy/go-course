@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="floating-button banner-trusted">
+        <button id="button" class="trusted-store__container">
+          <!-- <div class="trusted-store__container"> -->
+          <div class="trusted-store__top">
+            <div class="store__top">
+              <img width="81" src="https://cdn.trustedsite.com/static/img/trustedsite.svg">
+              <div class="spacer">|</div>
+              <p>artdigest.co</p>
+            </div>
+            <p>{{ "now" | date: "%Y-%m-%d" }}</p>
+          </div>
+          <div class="trusted-store__bottom">
+            <div class="store__bottom store_text-1">
+              <p><b>99%</b> Issue-Free Orders</p>
+              <div class="spacer">|</div>
+            </div>
+            <div class="store__bottom store_text-2">
+              <p><b>Secure</b> Checkout</p>
+              <div class="spacer">|</div>
+            </div>
+            <div class="store__bottom store_text-3">
+              <p><b>$100k</b> ID Protection</p>
+              <div class="spacer">|</div>
+            </div>
+            <div class="store__bottom store_text-4">
+              <p><b>Verified</b> Business</p>
+              <div class="spacer">|</div>
+            </div>
+            <div class="store__bottom store_text-5">
+              <p><b>Certified</b> Secure</p>
+              <div class="spacer">|</div>
+            </div>
+            <div class="store__bottom store_text-6">
+              <p><b>No</b> Malware</p>
+            </div>
+          </div>
+          <!-- </div> -->
+        </button>
+        <div id="text2" class="text-final" style="display:none;"></div>
+      </div>
+    
+    <style>
+    .floating-button.banner-trusted {
+          display: flex !important;
+    position: relative;
+          width: 100% !important;
+          justify-content: center;
+          align-items: center;
+          /* position: fixed;
+          bottom: 00px;
+          left: 0px; */
+          z-index: 1 !important;
+        }
+    #button.trusted-store__container {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          font-size: 13px;
+          font-family: "Open Sans", arial, sans-serif !important;
+          /* background-color: #959791; */
+          border-left: 3px solid #80c600 !important;
+          border: 1px solid rgba(0, 0, 0, .2);
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+    .trusted-store__top p {
+    margin: 0;
+    padding:0;
+    }
+    
+    
+        .trusted-store__top {
+          width: 100%;
+          background-color: white;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid #ccc;
+    margin: 10px 0 0px 0;
+        padding-bottom: 10px;
+        }
+    
+        .store__top {
+          display: flex;
+          gap: 15px;
+          align-items: center;
+          /* padding-right: 20px; */
+          margin-left: 10px;
+        }
+    
+    
+        .trusted-store__top>p {
+          padding-right: 10px;
+        }
+    
+        .spacer,
+        .trusted-store__top>p {
+          color: #ccc;
+        }
+    
+        .trusted-store__bottom {
+          width: 100%;
+          display: flex;
+          font-size: 11px;
+          align-items: center;
+          justify-content: space-evenly;
+          padding: 10px;
+          gap: 5px;
+          background-color: rgba(0, 0, 0, .047);
+        }
+    
+    .store__bottom p {
+    margin: 0 !important;
+    }
+    
+        .store__bottom {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          gap: 9px;
+          flex-wrap: wrap;
+        }
+    
+        #text.text-final:hover {
+          display: none !important;
+        }
+    
+    
+    
+        @media screen and (min-width: 1000px) {
+            .store__bottom {
+                justify-content: space-around;
+            }
+        }
+    
+        @media screen and (min-width: 1440px) {
+    
+            .store_text-5,
+            .store_text-6,
+            .store_text-4>.spacer {
+                display: none;
+            }
+    
+        }
+    
+        @media screen and (min-width:1000px) and (max-width: 1440px) {
+    
+            .store_text-4,
+            .store_text-5,
+            .store_text-6,
+            .store_text-3>.spacer {
+                display: none;
+            }
+        }
+    
+        @media screen and (min-width: 860px) and (max-width: 1000px) {
+            .store_text-6>.spacer {
+                display: none;
+            }
+        }
+    
+        @media screen and (min-width: 700px) and (max-width: 860px) {
+    
+            .store_text-6,
+            .store_text-5>.spacer {
+                display: none;
+            }
+        }
+    
+        @media screen and (min-width: 570px) and (max-width: 700px) {
+    
+            .store_text-5,
+            .store_text-6,
+            .store_text-4>.spacer {
+                display: none;
+            }
+        }
+    
+        @media screen and (min-width: 450px) and (max-width: 570px) {
+    
+            .store_text-4,
+            .store_text-5,
+            .store_text-6,
+            .store_text-3>.spacer {
+                display: none;
+            }
+        }
+    
+        @media screen and (max-width: 450px) {
+    
+            .store_text-3,
+            .store_text-4,
+            .store_text-5,
+            .store_text-6,
+            .store_text-2>.spacer {
+                display: none;
+            }
+        }
+    </style>
+    
+    <!-- <script>
+      const button = document.getElementById("button");
+      // const text = document.getElementById("text");
+      const text2 = document.getElementById("text2");
+      const popup = document.getElementById("popup");
+      const closeButton = document.getElementById("close-button");
+      const overlay = document.getElementById("overlay");
+    
+      // Get references to the elemest for Footer
+      const step1 = document.getElementById('step1');
+      const scoreBtns = document.querySelectorAll('.score-btn');
+    
+      const step2 = document.getElementById('step2');
+      const option1Btn = document.getElementById('option1');
+      const option2Btn = document.getElementById('option2');
+      const option3Btn = document.getElementById('option3');
+    
+      const feedbackDiv = document.getElementById('feedback');
+      const loadingSpinner = document.getElementById('loading-spinner');
+      const loadingText = document.getElementById('loading-text');
+    
+    
+      button.addEventListener("click", showPopup);
+      // text.addEventListener("click", showPopup);
+      text2.addEventListener("click", showPopup);
+      closeButton.addEventListener("click", hidePopup);
+      overlay.addEventListener("click", hidePopup);
+    
+      function showPopup() {
+        popup.style.display = "flex";
+        overlay.style.display = "block";
+      }
+    
+      function hidePopup() {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+      }
+    
+      // window.onload = function () {
+      //   setTimeout(function () {
+      //     text.style.display = "block";
+      //     setTimeout(function () {
+      //       text.style.display = "none";
+      //     }, 5000);
+      //   }, 1000);
+      // };
+    
+      // button.addEventListener("mouseover", function () {
+      //   text.style.display = "block";
+      // });
+    
+      // button.addEventListener("mouseout", function () {
+      //   text.style.display = "none";
+      // });
+    
+      // =======Style on Pop-UP=======
+      var faqQuestions = document.getElementsByClassName("faq-question");
+    
+      function toggleAnswer() {
+        var answer = this.nextElementSibling;
+        this.classList.toggle("active");
+        answer.classList.toggle("active");
+      }
+    
+      for (var i = 0; i < faqQuestions.length; i++) {
+        faqQuestions[i].addEventListener("click", toggleAnswer);
+      }
+    
+      // ==========FUNCTION TO FOOTER===========
+    
+      // Step 1 score button click events
+      scoreBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const score = btn.getAttribute('data-score');
+          scoreSelected(score);
+        });
+      });
+    
+      // Function to handle score selection and show Step 2
+      function scoreSelected(score) {
+        // Display loading spinner
+        loadingSpinner.style.display = 'block';
+        loadingText.style.display = 'block';
+    
+        // Delay moving to Step 2
+        setTimeout(() => {
+          // Hide Step 1 and show Step 2
+          step1.style.display = 'none';
+          step2.style.display = 'flex';
+    
+          // Hide loading spinner
+          loadingSpinner.style.display = 'none';
+          loadingText.style.display = 'none';
+        }, 2000);
+      }
+    
+      // Step 2 option selection events
+      option1Btn.addEventListener('click', () => {
+        optionSelected('Option 1');
+      });
+    
+      option2Btn.addEventListener('click', () => {
+        optionSelected('Option 2');
+      });
+    
+      option3Btn.addEventListener('click', () => {
+        optionSelected('Option 3');
+      });
+    
+      // Function to handle option selection and display feedback
+      function optionSelected(option) {
+        // Display loading spinner
+        loadingSpinner.style.display = 'block';
+        loadingText.style.display = 'block';
+    
+        // Delay showing feedback
+        setTimeout(() => {
+          // Hide Step 2 and show feedback
+          step2.style.display = 'none';
+          feedbackDiv.style.display = 'block';
+    
+          // Hide loading spinner
+          loadingSpinner.style.display = 'none';
+          loadingText.style.display = 'none';
+    
+          // Display feedback message
+          feedbackDiv.textContent = 'Thanks for your for your feedback!';
+        }, 2000);
+      }
+    </script> -->
+</body>
+</html>

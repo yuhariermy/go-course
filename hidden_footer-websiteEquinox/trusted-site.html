@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ======Trusted Site Style Start=======   */
+        .floating-button {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            z-index: 2;
+            width: 92px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #button {
+            padding: 4px 4px 3px 5px;
+            position: relative;
+            bottom: -3px;
+            left: 0;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+            border-top-right-radius: 2px;
+            /* color: white; */
+            border: none;
+            cursor: pointer;
+            z-index: 1;
+            cursor: pointer;
+            font: initial;
+            border-radius: 1px 1px 0 0;
+        }
+
+        #text {
+            display: none;
+            margin: 0;
+            padding: 2px 2px 0px;
+            font-weight: 900;
+            background-color: #f1f1f1;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+            border-top-right-radius: 2px;
+            color: #8A898C;
+            cursor: pointer;
+            font-size: 8px;
+            width: 90px;
+            text-align: center;
+            letter-spacing: 0.105em;
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(20, 20, 20, 0.95);
+            z-index: 9998;
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            flex-direction: column;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f5f5f5;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            /* border-radius: 10px; */
+            z-index: 99999;
+            min-width: 500px;
+            max-width: 590px;
+            max-height: 480px;
+            font-family: "Open Sans", arial, sans-serif;
+        }
+
+        /* ==========Pop Up Top============= */
+
+        .top-pop-up {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .content-scroll {
+            overflow-y: auto;
+        }
+
+        .pop-up__title {
+            width: 100%;
+            background-color: #80c600;
+            height: 115px;
+            padding-top: 25px;
+        }
+
+        .pop-up__title h1,
+        .pop-up__title p.p_text-popup {
+            margin-right: 11px !important;
+            margin-left: 11px !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            padding: 0 5px 0px;
+            color: white;
+            line-height: 1.5;
+        }
+
+        .pop-up__title h1 {
+            font-size: 22px;
+        }
+
+        .pop-up__title p {
+            opacity: 0.7;
+            font-size: 13px;
+        }
+
+        .verify_pop-up:hover {
+            text-decoration: underline 0.1px;
+            text-underline-offset: 3px;
+            text-decoration-color: black;
+        }
+
+        .pop-up__top {
+            position: sticky;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            color: #666a68;
+            padding: 2px 0;
+        }
+
+        p.verify_pop-up {
+            color: #666a68;
+            font-size: 11px;
+            letter-spacing: .5px;
+            margin: 0;
+            padding-right: 15px;
+        }
+
+        .pop-up__top img,
+        .pop-up__top p {
+            margin: 10px 15px;
+            cursor: pointer;
+        }
+
+        .pop-up__top img {
+            width: 100px;
+            height: 16px;
+        }
+
+        /* =========POP UP CONTENT========== */
+
+        #popup-content {
+            margin-bottom: 20px;
+            margin-right: 15px;
+            margin-left: 15px;
+            margin-top: -30px;
+            position: relative;
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        #close-button {
+            position: absolute;
+            top: -8%;
+            font-size: 20px;
+            right: 0%;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .faq-title {
+            text-align: left;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #333;
+            background-color: #80c600;
+            height: 100px;
+        }
+
+        .faq-title h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 22px;
+        }
+
+        .faq-title p {
+            margin: 0;
+            padding: 0;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .faq-item {
+            margin-bottom: 10px;
+            border: 1px solid #ebebeb;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            z-index: 999;
+            /* font-size: 13px; */
+        }
+
+        .faq-question {
+            font-size: 13px !important;
+            font-weight: 700;
+            padding: 6px 15px;
+            cursor: pointer;
+            /* background-color: #f5f5f5; */
+            color: #333;
+            /* font-weight: bold; */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.3s ease;
+        }
+
+
+        /* ========SPAN CERTIFIED TEXT======== */
+
+
+        .certified_span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #80c600;
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .certified_span svg {
+            margin-top: 6px;
+        }
+
+        .plus-sign {
+            content: "+";
+            font-weight: bold;
+            font-size: 18px;
+            color: #ccc;
+            transition: transform 0.3s ease;
+        }
+
+        /* ========SPAN ANSWER TEXT======== */
+        .faq-answer {
+            font-size: 13px;
+            display: none;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+            /* gap: 10px; */
+        }
+
+        .faq-answer p,
+        .text-answer {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0px;
+            line-height: 1.7;
+
+        }
+
+        .faq-answer p {
+            margin: 0;
+            padding-bottom: 15px;
+        }
+
+        .text-answer h3 {
+            font-weight: 400;
+            font-size: 13px;
+            /* margin-top: 5px; */
+            padding: 0px;
+        }
+
+        .text-answer {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 40px;
+            padding-bottom: 10px;
+        }
+
+        .text-answer img {
+            margin-top: 10px;
+        }
+
+
+        .text-google h3.h3-text {
+            margin-left: 50px !important;
+        }
+
+        .text-phishtank h3.h3-text {
+            margin-left: 30px !important;
+        }
+
+        .text-ssl h3.h3-text {
+            margin-left: 60px !important;
+        }
+
+        .secure-payment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .secure-payment h3,
+        h3.verified-text,
+        .coverage-amount h3,
+        .coverage-period h3 {
+            font-size: 11px;
+            font-weight: 700 !important;
+            letter-spacing: .8px;
+            color: black;
+        }
+
+        .logo-payment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        p.not__border-bottom {
+            border-bottom: none;
+        }
+
+        /* ========VERIFIED TESTIMONIALS========== */
+        .verified-testimonials {
+            border-left: solid 3px #e6e7e8;
+            padding-left: 15px;
+            margin-top: 15px;
+            font-weight: 100 !important;
+            font-size: 13px;
+            color: #666a68;
+        }
+
+        .verified-testimonials p {
+            border-bottom: none !important;
+            padding-bottom: 5px;
+        }
+
+        .verified-testimonials span {
+            opacity: .7;
+            font-size: 11px;
+            letter-spacing: .5px;
+        }
+
+        /* =======COVERAGE AREA======= */
+
+        .protection-status h3,
+        .protection-status p,
+        .verified p {
+            margin: 0;
+            padding: 0;
+            border-bottom: none;
+        }
+
+        .protection-status p {
+            color: #666a68;
+        }
+
+        .protection-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+        }
+
+        .coverage-text {
+            border-bottom: none !important;
+            font-size: 12px;
+            color: #959791;
+            padding-top: 10px;
+            letter-spacing: .3px;
+            font-weight: 400;
+        }
+
+        .coverage-text span {
+            text-decoration: underline;
+        }
+
+        .coverage-amount h3,
+        .coverage-period h3 {
+            padding-bottom: 8px;
+        }
+
+        .coverage-period {
+            padding-right: 60px;
+        }
+
+        /* ======VERIFIED AREA===== */
+        .verified {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .verified-text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 8px;
+        }
+
+        .verified-text h3 {
+            padding-left: 20px;
+        }
+
+        .verified p {
+            color: #80c600;
+            font-size: 11px;
+            font-weight: normal;
+            letter-spacing: .5px;
+        }
+
+        .verified-text a {
+            margin-top: 10px;
+        }
+
+
+        .ssl-issued {
+            padding-right: 180px;
+        }
+
+        .just-img {
+            margin-left: -8px;
+        }
+
+        /* ======About The Business========== */
+        .about-the-business {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            border-bottom: 1px solid rgba(20, 20, 20, .1);
+        }
+
+        .about-the-business img {
+            padding: 10px 20px;
+            width: 150px;
+            height: 100px;
+            border: solid 1px rgba(20, 20, 20, .1);
+        }
+
+        .about-the-business p {
+            border-bottom: none;
+            font-weight: normal !important;
+        }
+
+        .about-the-business span {
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        .businees-text-1 {
+            padding-right: 90px;
+        }
+
+        .protection-status.social-media-business {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .social-media-business {
+            border-top: 1px solid rgba(20, 20, 20, .1);
+            margin-top: 15px;
+        }
+
+        .snk-business {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.7;
+        }
+
+        .sosmed {
+            display: flex;
+            gap: 9px;
+        }
+
+        .minus-sign {
+            content: "-";
+            font-weight: bold;
+            font-size: 13px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .plus-sign {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer.active {
+            display: block;
+            flex-direction: column;
+            border-top: 1px solid #ebebea;
+            padding: 20px;
+            max-width: 470px;
+        }
+
+        .learn-more {
+            display: block;
+            text-decoration: underline;
+        }
+
+        /* ==========Trusted Site Text============== */
+        .trustedSite {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3px;
+            color: #959791;
+            font-size: 12px;
+            font-family: "Open Sans", arial, sans-serif;
+        }
+
+        .trustedSite_text span {
+            text-decoration: underline;
+        }
+
+        /* =====FOOTER POP UP=== */
+        #step1,
+        #step2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            padding-bottom: 15px;
+        }
+
+        .step1-option,
+        .step2-option {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+        }
+
+        .step1-option p {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .score-btn {
+            font-size: 11px;
+            border-radius: 50%;
+            border: none;
+            padding: 4px 9px;
+            font-weight: 700;
+            width: 25px;
+            height: 23px;
+            background-color: #f5f5f5;
+        }
+
+        .option-btn {
+            background: transparent;
+            border: none;
+            text-decoration: underline;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        #feedback {
+            font-size: 11px;
+            letter-spacing: .5px;
+        }
+
+        .footer__pop-up {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 75px;
+            padding: 15px 0;
+        }
+
+        #loading-spinner {
+            margin: 20px auto;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top-color: #333;
+            animation: spinner 1s linear infinite;
+        }
+
+        @keyframes spinner {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ==========MEDIA SCREEN========= */
+
+
+        /* @media screen and (max-width: 768px) {
+            .faq-question {
+              font-size: 18px;
+            }
+      
+            .faq-answer {
+              padding: 16px;
+              font-size: 14px;
+            }
+          } */
+        @media screen and (min-width:325px) and (max-width: 550px) {
+            #popup {
+                width: 100% !important;
+                min-width: 0 !important;
+            }
+        }
+
+        
+
+        /* ======Trusted Site Style End=======   */
+    </style>
+</head>
+
+<body>
+
+    <div class="floating-button banner-trusted">
+        <button id="button2" class="trusted-store__container">
+            <!-- <div class="trusted-store__container"> -->
+            <div class="trusted-store__top">
+                <div class="store__top">
+                    <img width="81" src="https://cdn.trustedsite.com/static/img/trustedsite.svg">
+                    <div class="spacer">|</div>
+                    <p>enigwatch.com</p>
+                </div>
+                <p>{{ "now" | date: "%Y-%m-%d" }}</p>
+            </div>
+            <div class="trusted-store__bottom">
+                <div class="store__bottom store_text-1">
+                    <p><b>99%</b> Issue-Free Orders</p>
+                    <div class="spacer">|</div>
+                </div>
+                <div class="store__bottom store_text-2">
+                    <p><b>Secure</b> Checkout</p>
+                    <div class="spacer">|</div>
+                </div>
+                <div class="store__bottom store_text-3">
+                    <p><b>$100k</b> ID Protection</p>
+                    <div class="spacer">|</div>
+                </div>
+                <div class="store__bottom store_text-4">
+                    <p><b>Verified</b> Business</p>
+                    <div class="spacer">|</div>
+                </div>
+                <div class="store__bottom store_text-5">
+                    <p><b>Certified</b> Secure</p>
+                    <div class="spacer">|</div>
+                </div>
+                <div class="store__bottom store_text-6">
+                    <p><b>No</b> Malware</p>
+                </div>
+            </div>
+            <!-- </div> -->
+        </button>
+        <div id="text2" class="text-final" style="display:none;"></div>
+    </div>
+
+    <!-- Start Section Floating Trusted Site -->
+
+    <div class="floating-button">
+        <button id="button"><img width="81" height="auto"
+                src="https://cdn.trustedsite.com/static/img/trustedsite.svg"></button>
+        <div id="text">CERTIFIED SECURE</div>
+    </div>
+
+    <div id="popup" class="hidden">
+        <button id="close-button">x</button>
+        <div class="pop-up__top">
+            <img src="https://sohnne.com/wp-content/uploads/2023/06/download.png" />
+            <a target="_blank" href="https://www.trustedsite.com/verify?js=1&host=enigwatch.com&lang=EN">
+                <p class="verify_pop-up">Verify <span>»</span></p>
+            </a>
+        </div>
+        <div class="content-scroll">
+            <div class="top-pop-up">
+                <div class="pop-up__title">
+                    <h1>enigwatch.com</h1>
+                    <p class="p_text-popup">This site has earned the following certifications</p>
+                </div>
+            </div>
+            <div id="popup-content">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Certified Secure
+                        <div class="certified_span">
+                            Certified
+                            <div class="plus-sign"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="20"
+                                    viewBox="0 0 24 24">
+                                    <path fill="none" stroke="#959791" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m6 9l6 6l6-6" />
+                                </svg></div>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            TrustedSite actively monitors this site for security issues such
+                            as malware, malicious links, and phishing. No issues were
+                            detected on its most recent security check.
+                        </p>
+                        <div class="text-answer text-google">
+                            <img width="50" height="30" src="https://cdn.trustedsite.com/static/img/logo/google.png">
+                            <h3 class="h3-text">No issues detected in Google Safe Browsing</h3>
+                        </div>
+                        <div class="text-answer text-phishtank">
+                            <img width="70" height="30" src="https://cdn.trustedsite.com/static/img/logo/phishtank.png">
+                            <h3 class="h3-text">No issues reported in PhishTank</h3>
+                        </div>
+                        <div class="text-answer text-ssl">
+                            <img width="40" height="30" src="https://cdn.trustedsite.com/static/img/logo/ssl.png">
+                            <h3 class="h3-text">Valid SSL Certificate</h3>
+                        </div>
+                        <div class="secure-payment">
+                            <h3 class="h3-text">SECURE PAYMENT PROCESSING</h3>
+                            <div class="logo-payment">
+                                <img width="90" height="50"
+                                    src="https://cdn.trustedsite.com/static/img/logo/paypal.png">
+                                <img width="90" height="50"
+                                    src="https://cdn.trustedsite.com/static/img/logo/amazon-pay.png">
+                                <img width="50" height="50"
+                                    src="https://cdn.trustedsite.com/static/img/logo/apple-pay.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        99% Issue-Free Orders
+                        <div class="certified_span">
+                            Certified
+                            <div class="plus-sign"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="20"
+                                    viewBox="0 0 24 24">
+                                    <path fill="none" stroke="#959791" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m6 9l6 6l6-6" />
+                                </svg></div>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            TrustedSite surveys customers of this site to see if they are satisfied with their
+                            experience. Fewer than
+                            1% of surveyed customers have reported issues.</p>
+
+                        <h3 class="verified-text">VERIFIED TESTIMONIALS</h3>
+                        <div class="verified-testimonials">
+                            <p>"Great deal fast shipping!"</p>
+                            <span>- James B.</span>
+                        </div>
+                        <div class="verified-testimonials">
+                            <p>"quick and easy fast delivery"</p>
+                            <span>- Joe S.</span>
+                        </div>
+                        <div class="verified-testimonials">
+                            <p>"Everything was delivered as promised - the chair the delivery time - all excellent!
+                                Would have liked
+                                to receive a tracking number however. Not a big deal though since it showed up when
+                                promised. I’d buy
+                                from them again in a heartbeat."</p>
+                            <span>- Scott T.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        $100k Shopper Identity Protection
+                        <div class="certified_span">
+                            Certified
+                            <div class="plus-sign"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="20"
+                                    viewBox="0 0 24 24">
+                                    <path fill="none" stroke="#959791" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m6 9l6 6l6-6" />
+                                </svg></div>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="not__border-bottom">
+                            This site protects qualifying customers with 90 days of TrustedSite Shopper Identity
+                            Protection after
+                            every purchase. This identity theft coverage is good for up to $100,000 towards the costs
+                            associated with
+                            identity restoration.
+                        </p>
+                        <div class="protection-status">
+                            <div class="coverage-amount">
+                                <h3>COVERAGE AMOUNT</h3>
+                                <p>$100,000</p>
+                            </div>
+                            <div class="coverage-period">
+                                <h3>COVERAGE PERIOD</h3>
+                                <p>90 Days</p>
+                            </div>
+                        </div>
+                        <p class="coverage-text">
+                            Shopper Identity Protection is provided by TrustedSite, LLC and Voyager Indemnity Insurance
+                            Company.
+                            Identity Fraud Expense Reimbursement is available to residents of the United States, its
+                            territories and
+                            possessions, Puerto Rico and Canada, excluding MN, TX & NY. Terms and conditions apply
+                            <span>Summary of
+                                Benefits</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Verified Business<div class="certified_span">
+                            Certified
+                            <div class="plus-sign"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="20"
+                                    viewBox="0 0 24 24">
+                                    <path fill="none" stroke="#959791" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m6 9l6 6l6-6" />
+                                </svg></div>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            TrustedSite has independently verified key business information provided by this site.</p>
+                        <div class="text-answer verified ">
+                            <div class="verified-text">
+                                <iconify-icon icon="bi:telephone-fill" style="color: #959791;" width="18"
+                                    height="13"></iconify-icon>
+                                <a href="tel:+18336000077">
+                                    <h3> +1 (833) 600 - 0077 </h3>
+                                </a>
+                            </div>
+                            <p>Verified</p>
+                        </div>
+                        <div class="text-answer verified ">
+                            <div class="verified-text">
+                                <iconify-icon icon="ic:baseline-email" style="color: #959791;" width="22"
+                                    height="18"></iconify-icon>
+                                <a href="mailto:support@enigwatch.com">
+                                    <h3>support@enigwatch.com</h3>
+
+                                </a>
+                            </div>
+                            <p>Verified</p>
+                        </div>
+                        <div class="text-answer verified ">
+                            <div class="verified-text">
+                                <iconify-icon icon="material-symbols:keyboard" style="color: #959791;" width="22"
+                                    height="22"></iconify-icon>
+                                <h3>TrustedSite Verified Contact Form</h3>
+                            </div>
+                            <p>Verified</p>
+                        </div>
+                        <div class="text-answer verified ">
+                            <div class="verified-text">
+                                <iconify-icon icon="mdi:location" style="color: #959791;" width="22"
+                                    height="22"></iconify-icon>
+                                <h3> 3000 SCOTT BLVD, SANTA CLARA, CA 95054, UNITED STATES
+                                </h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Data Protection<div class="certified_span">
+                            Certified
+                            <div class="plus-sign"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="20"
+                                    viewBox="0 0 24 24">
+                                    <path fill="none" stroke="#959791" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m6 9l6 6l6-6" />
+                                </svg></div>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="not__border-bottom">
+                            TrustedSite has verified that this site uses SSL to encrypt communications with
+                            industry-standard security
+                            protocols.
+                        </p>
+                        <div class="protection-status">
+                            <div class="coverage-amount">
+                                <h3>SSL VALID UNTIL</h3>
+                                <p>2023-08-19</p>
+                            </div>
+                            <div class="coverage-period ssl-issued">
+                                <h3>SSL ISSUED BY</h3>
+                                <p>R3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Spam Free<div class="certified_span">
+                            Certified
+                            <div class="plus-sign"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="20"
+                                    viewBox="0 0 24 24">
+                                    <path fill="none" stroke="#959791" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m6 9l6 6l6-6" />
+                                </svg></div>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="not__border-bottom">
+                            After entering a unique email address on this site, TrustedSite has not detected any spam or
+                            suspicious
+                            activity.
+                        </p>
+                        <img class="just-img" src="https://cdn.trustedsite.com/meter/trustedsite.com/216.svg">
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        About the Business<div class="plus-sign"><svg xmlns="http://www.w3.org/2000/svg" width="15"
+                                height="20" viewBox="0 0 24 24">
+                                <path fill="none" stroke="#959791" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m6 9l6 6l6-6" />
+                            </svg></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="about-the-business">
+                            <img
+                                src="https://cdn.trustedsite.com/static/img/dyn/?do=logo&id=6307035&r=20230625100100685881">
+                            <div class="about-the-business__text">
+                                <span>Enigwatch Inc.</span>
+                                <p>
+                                    Every story has a beginning, ours began in 1993 with one simple concept from our
+                                    visionary founder belief, “It is logical to protect one’s possessions by storing and
+                                    safeguarding them in a fine quality case.” Journey through the milestones of
+                                    ENIGWATCH as we grew into a global brand through our commitment to honouring
+                                    people’s stories and the priceless jewelry and timepieces they entrust to us.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="protection-status">
+                            <div class="coverage-amount">
+                                <h3>BUSINESS FOUNDED</h3>
+                                <p>1993</p>
+                            </div>
+                            <div class="coverage-period businees-text-1">
+                                <h3>EMPLOYEES</h3>
+                                <p>51-200</p>
+                            </div>
+                        </div>
+
+                        <div class="protection-status">
+                            <div class="coverage-amount">
+                                <h3>BUSINESS MANAGEMENT</h3>
+                                <p>Enigwatch</p>
+                            </div>
+                            <div class="coverage-period businees-text-2">
+                                <h3>CERTIFIED SINCE</h3>
+                                <p>2022-07-25</p>
+                            </div>
+                        </div>
+                        <div class="protection-status social-media-business">
+                            <div class="coverage-amount">
+                                <h3>LINKS</h3>
+                                <div class="snk-business">
+                                    <a target="_blank" href="https://enigwatch.com/pages/return-policy">Return
+                                        Policy</a>
+                                    <a target="_blank" href="https://enigwatch.com/pages/privacy-policy">Privacy
+                                        Policy</a>
+                                    <a target="_blank" href="https://enigwatch.com/pages/accessibility">Terms of
+                                        Service</a>
+                                    <a target="_blank" href="https://enigwatch.com/pages/contact">Contact Page</a>
+                                </div>
+                            </div>
+                            <div class="coverage-period businees-text-2">
+                                <h3>SOCIAL</h3>
+                                <div class="sosmed">
+                                    <a target="_blank"
+                                        href="https://www.facebook.com/enigwatch.official/?show_switched_toast=0&show_invite_to_follow=0&show_switched_tooltip=0&show_podcast_settings=0&show_community_review_changes=0&show_community_rollback=0&show_follower_visibility_disclosure=0">
+                                        <iconify-icon icon="akar-icons:facebook-fill" style="color: #959791;" width="20"
+                                            height="30"></iconify-icon>
+                                    </a>
+                                    <a href="https://www.instagram.com/enigwatch.official/" target="_blank">
+
+                                        <iconify-icon icon="bi:instagram" style="color: #959791;" width="20"
+                                            height="30"></iconify-icon>
+                                    </a>
+                                    <a href="https://www.youtube.com/@enigwatch" target="_blank">
+
+                                        <iconify-icon icon="bi:youtube" style="color: #959791;" width="20"
+                                            height="30"></iconify-icon>
+                                    </a>
+                                    <a href="https://www.pinterest.com/enigwatch/" target="_blank">
+
+                                        <iconify-icon icon="simple-icons:pinterest" style="color: #959791;" width="20"
+                                            height="30"></iconify-icon>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        About TrustedSite<div class="plus-sign"><svg xmlns="http://www.w3.org/2000/svg" width="15"
+                                height="20" viewBox="0 0 24 24">
+                                <path fill="none" stroke="#959791" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m6 9l6 6l6-6" />
+                            </svg></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            TrustedSite offers cybersecurity solutions to help organizations protect their customer data
+                            and earn
+                            trust with their visitors. Sites earn TrustedSite certifications by maintaining a high level
+                            of website
+                            safety standards and good business practices.
+                            <a target="_blank" href="https://www.trustedsite.com/for-consumers?referer=sohnne.com">
+                                <span class="learn-more">Learn More</span>
+                            </a>
+                        </p>
+                        <h3 style="font-weight: 700; font-size: 13px; color: black;">For Business</h3>
+                        <p class="not__border-bottom" style="margin-top: 15px;">
+                            Discover TrustedSite’s attack surface management platform and certification program for
+                            trustworthy
+                            businesses.
+                            <a target="_blank" href="https://www.trustedsite.com/?referer=sohnne.com">
+                                <span class="learn-more">Learn More</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="trustedSite">
+                    <iconify-icon icon="mingcute:chrome-fill" style="color: #666a68" width="16"
+                        height="16"></iconify-icon>
+                    <a target="_blank"
+                        href="https://chrome.google.com/webstore/detail/trustedsite/meaanhhbdanomagjkjleigjfiamjhomi">
+                        <p class="trustedSite_text">
+                            Browse smarter with <span>TrustedSite for Chrome</span>
+                        </p>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="pop-up__top footer__pop-up">
+            <div id="step1">
+                <p>How trustworthy is this site?
+                </p>
+                <div class="step1-option">
+                    <p>(not at all)</p>
+                    <button class="score-btn" data-score="1">1</button>
+                    <button class="score-btn" data-score="2">2</button>
+                    <button class="score-btn" data-score="3">3</button>
+                    <button class="score-btn" data-score="4">4</button>
+                    <button class="score-btn" data-score="5">5</button>
+                    <p>(very)</p>
+                </div>
+            </div>
+
+            <div id="step2" style="display: none;">
+                <p>Does knowing this site is TrustedSite certified increase your trust in this site?</p>
+                <div class="step2-option">
+
+                    <button id="option1" class="option-btn">Not At All</button>
+                    <button id="option2" class="option-btn">Somewhat</button>
+                    <button id="option3" class="option-btn">Definitely</button>
+                </div>
+            </div>
+
+            <div id="feedback" style="display: none;">
+                <div id="loading-spinner"></div>
+                <p id="loading-text">Loading...</p>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" class="hidden"></div>
+    <!-- End Section Floating Trusted Site -->
+    <!-- CUSTOM TRUSTED SITE SCRIPT - START -->
+    <!-- <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script> -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
+    <script>
+        const button = document.getElementById("button");
+        const text = document.getElementById("text");
+        const popup = document.getElementById("popup");
+        const closeButton = document.getElementById("close-button");
+        const overlay = document.getElementById("overlay");
+
+        // Get references to the elemest for Footer
+        const step1 = document.getElementById('step1');
+        const scoreBtns = document.querySelectorAll('.score-btn');
+
+        const step2 = document.getElementById('step2');
+        const option1Btn = document.getElementById('option1');
+        const option2Btn = document.getElementById('option2');
+        const option3Btn = document.getElementById('option3');
+
+        const feedbackDiv = document.getElementById('feedback');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const loadingText = document.getElementById('loading-text');
+
+
+        button.addEventListener("click", showPopup);
+        text.addEventListener("click", showPopup);
+        closeButton.addEventListener("click", hidePopup);
+        overlay.addEventListener("click", hidePopup);
+
+        function showPopup() {
+            popup.style.display = "flex";
+            overlay.style.display = "block";
+        }
+
+        function hidePopup() {
+            popup.style.display = "none";
+            overlay.style.display = "none";
+        }
+
+        window.onload = function () {
+            setTimeout(function () {
+                text.style.display = "block";
+                setTimeout(function () {
+                    text.style.display = "none";
+                }, 5000);
+            }, 1000);
+        };
+
+        button.addEventListener("mouseover", function () {
+            text.style.display = "block";
+        });
+
+        button.addEventListener("mouseout", function () {
+            text.style.display = "none";
+        });
+
+        // =======Style on Pop-UP=======
+        var faqQuestions = document.getElementsByClassName("faq-question");
+
+        function toggleAnswer() {
+            var answer = this.nextElementSibling;
+            this.classList.toggle("active");
+            answer.classList.toggle("active");
+        }
+
+        for (var i = 0; i < faqQuestions.length; i++) {
+            faqQuestions[i].addEventListener("click", toggleAnswer);
+        }
+
+        // ==========FUNCTION TO FOOTER===========
+
+        // Step 1 score button click events
+        scoreBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const score = btn.getAttribute('data-score');
+                scoreSelected(score);
+            });
+        });
+
+        // Function to handle score selection and show Step 2
+        function scoreSelected(score) {
+            // Display loading spinner
+            loadingSpinner.style.display = 'block';
+            loadingText.style.display = 'block';
+
+            // Delay moving to Step 2
+            setTimeout(() => {
+                // Hide Step 1 and show Step 2
+                step1.style.display = 'none';
+                step2.style.display = 'flex';
+
+                // Hide loading spinner
+                loadingSpinner.style.display = 'none';
+                loadingText.style.display = 'none';
+            }, 2000);
+        }
+
+        // Step 2 option selection events
+        option1Btn.addEventListener('click', () => {
+            optionSelected('Option 1');
+        });
+
+        option2Btn.addEventListener('click', () => {
+            optionSelected('Option 2');
+        });
+
+        option3Btn.addEventListener('click', () => {
+            optionSelected('Option 3');
+        });
+
+        // Function to handle option selection and display feedback
+        function optionSelected(option) {
+            // Display loading spinner
+            loadingSpinner.style.display = 'block';
+            loadingText.style.display = 'block';
+
+            // Delay showing feedback
+            setTimeout(() => {
+                // Hide Step 2 and show feedback
+                step2.style.display = 'none';
+                feedbackDiv.style.display = 'block';
+
+                // Hide loading spinner
+                loadingSpinner.style.display = 'none';
+                loadingText.style.display = 'none';
+
+                // Display feedback message
+                feedbackDiv.textContent = 'Thanks for your feedback!';
+            }, 2000);
+        }
+    </script>
+    <!-- TRUSTED SITE SCRIPT - END -->
+</body>
+
+</html>
